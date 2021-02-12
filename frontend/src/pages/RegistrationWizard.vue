@@ -8,7 +8,7 @@
           icon="email"
           :done="step > 1"
         >
-          <BaseRegisterForm @base-register-data="handleBaseReghisterData" />
+          <BaseRegisterForm @base-register-data="handleBaseRegisterData" />
         </q-step>
 
         <q-step
@@ -26,6 +26,7 @@
               @click="$refs.stepper.next()"
               color="primary"
               :label="step === 2 ? 'Zarejestruj' : 'Przejdź dalej'"
+              :disable="!dataFromBaseRegisterForm.correct"
             />
             <q-btn
               v-if="step > 1"
@@ -46,6 +47,7 @@
 import { defineComponent, ref } from "vue";
 import BaseRegisterForm from "../components/RegistrationWizard/BaseRegisterForm";
 import ExtendRegisterForm from "../components/RegistrationWizard/ExtendRegisterForm";
+import BaseregisterModel from "../components/RegistrationWizard/BaseRegisterModel.model.js";
 
 export default defineComponent({
   name: "RegistrationWizard",
@@ -56,11 +58,12 @@ export default defineComponent({
   data() {
     return {
       step: 1,
+      dataFromBaseRegisterForm: new BaseregisterModel({}),
     };
   },
   methods: {
-    handleBaseReghisterData(val) {
-      console.log(val);
+    handleBaseRegisterData(val) {
+      this.dataFromBaseRegisterForm = val;
     },
   },
 });

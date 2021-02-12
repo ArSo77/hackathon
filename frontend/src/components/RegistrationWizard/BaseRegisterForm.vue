@@ -32,9 +32,11 @@
 
 <script>
 import { defineComponent } from "vue";
+import BaseRegisterModel from "./BaseRegisterModel.model";
 
 export default defineComponent({
   name: "BaseRegisterForm",
+  emits: ["base-register-data"],
   props: {},
   data() {
     return {
@@ -59,17 +61,16 @@ export default defineComponent({
       deep: true,
       handler(v) {
         if (v) {
-          this.$emit("base-register-data", {
-            email: this.email,
-            password: this.password,
-            correct: this.checkDataCorrect,
-          });
+          const values = new BaseRegisterModel(
+            this.email,
+            this.password,
+            true,
+            this.isTrainer
+          );
+          this.$emit("base-register-data", values);
         } else {
-          this.$emit("base-register-data", {
-            email: null,
-            password: null,
-            correct: false,
-          });
+          const values = new BaseRegisterModel(null, null, false, false);
+          this.$emit("base-register-data", values);
         }
       },
     },
