@@ -3,29 +3,29 @@ const Schema = mongoose.Schema;
 
 const trainingSchema = new Schema(
   {
-    date: {
-      type: Date,
-      required: true,
-    },
-    time: {
-      type: String,
-      required: false,
-    },
     plan: {
-      type: Array,
-      require: true,
+      type: [],
+      required: false
     },
     process: {
-      type: Array,
-      require: false,
+      type: [],
+      required: false
     },
     comments: {
-      type: Array,
-      require: false,
+      type: [],
+      required: false
     },
-    additionals: {
-      type: Array,
-      require: false,
+    status: {
+      type: [],
+      required: false
+    },
+    dateFrom: {
+      type: Date,
+      require: true
+    },
+    dateTo: {
+      type: Date,
+      require: true
     },
     userId: {
       type: Schema.Types.ObjectId,
