@@ -20,8 +20,9 @@ exports.signup = (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   const login = req.body.login;
-  const createdAt = new Date()
-
+  const createdAt = new Date();
+  const description = req.body.description;
+  const photo = req.body.photo;
 
   bcrypt
     .hash(password, 12)
@@ -31,7 +32,9 @@ exports.signup = (req, res, next) => {
         createdAt: createdAt,
         password: hashedPw,
         login: login,
-        name: name
+        name: name,
+        description: description,
+        photo: photo
       });
       return user.save();
     })
