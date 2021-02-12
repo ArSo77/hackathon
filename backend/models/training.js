@@ -4,7 +4,25 @@ const Schema = mongoose.Schema;
 const trainingSchema = new Schema(
   {
     plan: {
-      type: [],
+      type: [{
+
+
+
+
+
+
+        name: { type: String, required: true },
+
+        type: { type: String, required: true },
+
+        series: { type: [], required: false }
+
+
+
+
+
+
+      }],
       required: false
     },
     process: {
@@ -12,12 +30,18 @@ const trainingSchema = new Schema(
       required: false
     },
     comments: {
-      type: [{ creator: { type: Schema.Types.ObjectId } }],
+      type: [{
+        creator: { type: Schema.Types.ObjectId },
+        text: { type: String, required: true },
+        date: { type: Date, default: Date.now }
+      }],
       required: false
     },
     status: {
-      type: [],
-      required: false
+      type: String,
+      enum: ["PLANNED", "ABORT", "DONE"],
+      default: 'PLANNED',
+      required: true
     },
     dateFrom: {
       type: Date,
