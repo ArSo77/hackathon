@@ -3,37 +3,63 @@ const Schema = mongoose.Schema;
 
 const trainingSchema = new Schema(
   {
-    date: {
-      type: Date,
-      required: true,
-    },
-    time: {
-      type: String,
-      required: false,
-    },
     plan: {
-      type: Array,
-      require: true,
+      type: [{
+
+
+
+
+
+
+        name: { type: String, required: true },
+
+        type: { type: String, required: true },
+
+        series: { type: [], required: false }
+
+
+
+
+
+
+      }],
+      required: false
     },
     process: {
-      type: Array,
-      require: false,
+      type: [],
+      required: false
     },
     comments: {
-      type: Array,
-      require: false,
+      type: [{
+        creator: { type: Schema.Types.ObjectId },
+        text: { type: String, required: true },
+        date: { type: Date, default: Date.now }
+      }],
+      required: false
     },
-    additionals: {
-      type: Array,
-      require: false,
+    status: {
+      type: String,
+      enum: ["PLANNED", "ABORT", "DONE"],
+      default: 'PLANNED',
+      required: true
+    },
+    dateFrom: {
+      type: Date,
+      require: true
+    },
+    dateTo: {
+      type: Date,
+      require: true
     },
     userId: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true
     },
     creatorId: {
       type: Schema.Types.ObjectId,
       ref: "User",
+      required: true
     },
     // posts: [
     //   {
