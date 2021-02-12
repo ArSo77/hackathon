@@ -10,7 +10,6 @@
         >
           <BaseRegisterForm />
         </q-step>
-
         <q-step
           :name="2"
           title="Create an ad group"

@@ -15,25 +15,32 @@ exports.signup = (req, res, next) => {
   }
   const email = req.body.email;
   const name = req.body.name;
+  const surname = req.body.surname;
   const password = req.body.password;
-  const login = req.body.login;
-  const pupils = req.body.pupils;
+  const createdAt = new Date();
+  const description = req.body.description;
+  const photo = req.body.photo;
+
   bcrypt
     .hash(password, 12)
     .then(hashedPw => {
       const user = new User({
         email: email,
         password: hashedPw,
-        login: login,
         name: name,
-        pupils: pupils
+        surname: surname,
+        description: description,
+        photo: photo,
+        createdAt: createdAt
       });
+      console.log(user)
       return user.save();
     })
     .then(result => {
       res.status(201).json({ message: 'User created!', userId: result._id });
     })
     .catch(err => {
+      console.log(err)
       if (!err.statusCode) {
         err.statusCode = 500;
       }

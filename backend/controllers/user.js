@@ -29,6 +29,13 @@ exports.getUser = (req, res, next) => {
 };
 
 
+exports.getAllPupilsByTrainer = (req, res) => {
+  User.findById()
+    .then((user) => {
+
+    })
+}
+
 exports.getPupils = (req, res, next) => {
   const authHeader = req.get('Authorization');
   if (authHeader) {

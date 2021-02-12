@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs')
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -11,11 +12,15 @@ const userSchema = new Schema({
     required: true,
     select: false
   },
-  login: {
+  name: {
+    type: String,
+    required: false
+  },
+  surname: {
     type: String,
     required: true
   },
-  name: {
+  photo: {
     type: String,
     required: false
   },
@@ -23,18 +28,29 @@ const userSchema = new Schema({
     type: String,
     default: 'I am new!'
   },
+  roles: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   pupils: [
     {
       type: Schema.Types.ObjectId,
       ref: 'User'
     }
-  ]
-  // posts: [
-  //   {
-  //     type: Schema.Types.ObjectId,
-  //     ref: 'Post'
-  //   }
-  // ]
+  ],
+  trainers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
+  createdAt: {
+    type: Date,
+    required: false
+  }
 });
+
 
 module.exports = mongoose.model('User', userSchema);
