@@ -8,6 +8,10 @@ const routes = [
         path: "/register",
         component: () => import("pages/RegistrationWizard.vue"),
       },
+      {
+        path: "/progress",
+        component: () => import("pages/Progress.vue"),
+      },
     ],
   },
 
