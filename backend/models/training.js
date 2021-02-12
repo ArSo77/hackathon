@@ -12,7 +12,7 @@ const trainingSchema = new Schema(
       required: false
     },
     comments: {
-      type: [],
+      type: [{ creator: { type: Schema.Types.ObjectId } }],
       required: false
     },
     status: {
