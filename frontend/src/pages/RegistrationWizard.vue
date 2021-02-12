@@ -8,9 +8,7 @@
           icon="settings"
           :done="step > 1"
         >
-          For each ad campaign that you create, you can control how much you're
-          willing to spend on clicks and conversions, which networks and
-          geographical locations you want your ads to show on, and more.
+          <BaseRegisterForm />
         </q-step>
 
         <q-step
@@ -59,11 +57,16 @@
 
 <script>
 import { defineComponent, ref } from "vue";
+import BaseRegisterForm from "../components/RegistrationWizard/BaseRegisterForm";
 
 export default defineComponent({
   name: "RegistrationWizard",
+  components: {
+    BaseRegisterForm,
+  },
   setup() {
     const step = ref(1);
+
     return {
       step,
     };
