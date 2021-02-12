@@ -61,13 +61,15 @@ export default defineComponent({
       deep: true,
       handler(v) {
         if (v) {
-          const values = new BaseRegisterModel(
-            this.email,
-            this.password,
-            true,
-            this.isTrainer
+          this.$emit(
+            "base-register-data",
+            new BaseRegisterModel(
+              this.email,
+              this.password,
+              true,
+              this.isTrainer
+            )
           );
-          this.$emit("base-register-data", values);
         } else {
           const values = new BaseRegisterModel(null, null, false, false);
           this.$emit("base-register-data", values);
