@@ -4,33 +4,20 @@
       <q-stepper v-model="step" ref="stepper" color="primary" animated>
         <q-step
           :name="1"
-          title="Select campaign settings"
-          icon="settings"
+          title="Podaj hasło i email"
+          icon="email"
           :done="step > 1"
         >
-          <BaseRegisterForm />
+          <BaseRegisterForm @base-register-data="handleBaseReghisterData" />
         </q-step>
 
         <q-step
           :name="2"
-          title="Create an ad group"
-          caption="Optional"
+          title="Podstawowe informacje"
           icon="create_new_folder"
           :done="step > 2"
         >
-          An ad group contains one or more ads which target a shared set of
-          keywords.
-        </q-step>
-
-        <q-step :name="3" title="Ad template" icon="assignment" disable>
-          This step won't show up because it is disabled.
-        </q-step>
-
-        <q-step :name="4" title="Create an ad" icon="add_comment">
-          Try out different ad text to see what brings in the most customers,
-          and learn how to enhance your ads using features like ad extensions.
-          If you run into any problems with your ads, find out how to tell if
-          they're running and how to resolve approval issues.
+          <ExtendRegisterForm />
         </q-step>
 
         <template v-slot:navigation>
@@ -38,14 +25,14 @@
             <q-btn
               @click="$refs.stepper.next()"
               color="primary"
-              :label="step === 4 ? 'Finish' : 'Continue'"
+              :label="step === 2 ? 'Zarejestruj' : 'Przejdź dalej'"
             />
             <q-btn
               v-if="step > 1"
               flat
               color="primary"
               @click="$refs.stepper.previous()"
-              label="Back"
+              label="Wróć"
               class="q-ml-sm"
             />
           </q-stepper-navigation>
@@ -58,18 +45,23 @@
 <script>
 import { defineComponent, ref } from "vue";
 import BaseRegisterForm from "../components/RegistrationWizard/BaseRegisterForm";
+import ExtendRegisterForm from "../components/RegistrationWizard/ExtendRegisterForm";
 
 export default defineComponent({
   name: "RegistrationWizard",
   components: {
     BaseRegisterForm,
+    ExtendRegisterForm,
   },
-  setup() {
-    const step = ref(1);
-
+  data() {
     return {
-      step,
+      step: 1,
     };
+  },
+  methods: {
+    handleBaseReghisterData(val) {
+      console.log(val);
+    },
   },
 });
 </script>

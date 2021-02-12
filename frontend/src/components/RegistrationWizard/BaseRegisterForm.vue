@@ -12,9 +12,7 @@
       v-model="password"
       filled
       :type="isPwd ? 'password' : 'text'"
-      :rules="[
-        (val) => val.trim().length > 5 || 'Hasło musi zawierać min. 5 znaków',
-      ]"
+      :rules="[isValidPassword || 'Hasło musi zawierać min. 5 znaków']"
       hint="Hasło"
     >
       <template v-slot:append>
@@ -50,6 +48,37 @@ export default defineComponent({
     isValidEmail(val) {
       const emailPattern = /^(?=[a-zA-Z0-9@._%+-]{6,254}$)[a-zA-Z0-9._%+-]{1,64}@(?:[a-zA-Z0-9-]{1,63}\.){1,8}[a-zA-Z]{2,63}$/;
       return emailPattern.test(val) || "Nieprawidłowy adres e-mail";
+    },
+    isValidPassword(val) {
+      return val.trim().length > 5;
+    },
+  },
+  watch: {
+    checkDataCorrect: {
+      immediate: true,
+      deep: true,
+      handler(v) {
+        if (v) {
+          this.$emit("base-register-data", {
+            email: this.email,
+            password: this.password,
+            correct: this.checkDataCorrect,
+          });
+        } else {
+          this.$emit("base-register-data", {
+            email: null,
+            password: null,
+            correct: false,
+          });
+        }
+      },
+    },
+  },
+  computed: {
+    checkDataCorrect() {
+      return (
+        this.isValidEmail(this.email) && this.isValidPassword(this.password)
+      );
     },
   },
 });
