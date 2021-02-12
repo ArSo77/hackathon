@@ -6,11 +6,8 @@ const router = express.Router();
 router.get("/all", userController.getUsers);
 router.get("/pupils", userController.getPupils);
 
-// // POST /user
-// router.post(
-//   "/",
-//   userController.createUser,
-// );
+// POST /user/create
+// router.post("/create", userController.createUser);
 
 // GET /user/:userId
 router.get("/:userId", userController.getUser);

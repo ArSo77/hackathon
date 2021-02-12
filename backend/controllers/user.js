@@ -3,10 +3,23 @@ const path = require('path');
 const { validationResult } = require('express-validator/check');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
-
-
 const User = require('../models/user');
+
+
+
+exports.createUser = (req, res, next) => {
+
+  console.log(`POST :: CREATE NEW USER - {${req.body.name} ${req.body.surname}}`)
+
+  const user = new User({...req.body})
+
+
+
+  console.log(user)
+
+  next()
+
+}
 
 exports.getUsers = (req, res, next) => {
   User.find()

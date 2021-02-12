@@ -10,8 +10,6 @@ var cors = require('cors')
 const app = express();
 // const isAuth = require('../middleware/is-auth');
 
-
-
 var allowlist = ['http://localhost:8080', 'http://localhost:3000', 'http://localhost:8081']
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
@@ -36,6 +34,7 @@ mongoose
     , { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => {
     console.log("Connected to mongoDB")
+    console.log(`App listening on PORT {${3000}}`)
     app.listen(3000);
   })
   .catch(err => console.log(err));
