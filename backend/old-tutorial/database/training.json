@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "date": 1499403340,
+    "userId": 123,
+    "details": [{ "label": "To jest jeden z planu treningu 1" }],
+    "realization": [],
+    "comments": [
+      {
+        "userId": 456,
+        "content": "To jest komentarz zawodnika",
+        "role": "user"
+      },
+      { "userId": 123, "content": "To jest komentarz trenera", "role": "coach" }
+    ]
+  },
+  {
+    "id": 2,
+    "date": 1599403340,
+    "userId": 123,
+    "details": [{ "label": "To jest jeden z planu treningu 2" }],
+    "realization": [],
+    "comments": [
+      {
+        "userId": 456,
+        "content": "To jest komentarz zawodnika",
+        "role": "user"
+      },
+      { "userId": 123, "content": "To jest komentarz trenera", "role": "coach" }
+    ]
+  }
+]
